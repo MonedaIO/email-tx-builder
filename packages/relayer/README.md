@@ -1,33 +1,63 @@
 # Generic Relayer
 
-## Build
+## Prerequisites
 
-make sure to build the contracts before building the relayer
+- rust and cargo
+- docker compose
+- sqlx-cli
 
-```
-cd ../contracts
-yarn && yarn build
-```
 
-cd back into the relayer and build it
+## Setup
 
-```
-cargo build
-```
+### 1. Build contracts
 
-## Setup the local development environment
-
-cd into the root directory and run
-
-```
-docker compose up --build
+```bash
+yarn workspace @zk-email/email-tx-builder-contracts build
 ```
 
-This will build the docker images for the node, bundler, scanner, smtp, and imap services.
+### 2. Configure relayer
 
-## Applying the migrations
+In the relayer package directory (`./packages/relayer`) copy the config file:
 
+```bash
+cp config.example.json config.json
 ```
-cd packages/relayer
+
+Edit `config.json` and fill in:
+- `chains.<network>.privateKey` - Private key for the used chains
+- `prover.*` - Deploy the prover (see the [prover setup guide](../prover/)) and fill all `prover` fields
+- `icp.*` - Set up the ICP (see the [ICP setup guide](https://proofofemail.notion.site/How-to-setup-ICP-account-for-relayer-cf80ad6187e94219b25152fb875309db)) and fill all `icp` fields
+
+> Note: do not forget to place the `.ic.pem` file in the relayer root
+
+### 3. Configure environment
+
+In the the repository root, copy and edit the `.env` file:
+
+```bash
+cp .env.example .env
+```
+
+Fill in the SMTP and IMAP credentials in `.env`.
+
+### 4. Build relayer
+
+```bash
+cargo build --release
+```
+
+### 5. Build and start services
+
+From the repository root:
+
+```bash
+docker compose up --build -d
+```
+
+This will spin up the docker containers for the imap, smtp and db services.
+
+### 6. Apply the migrations
+
+```bash
 DATABASE_URL=postgres://relayer:relayer_password@localhost:5432/relayer sqlx migrate run
 ```

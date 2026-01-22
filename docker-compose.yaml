@@ -3,8 +3,6 @@
 # It includes:
 # - A PostgreSQL database for storing relayer data
 # - The relayer service built from local source code
-version: '3.8'
-
 services:
   db:
     image: postgres:15
