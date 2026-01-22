@@ -32,7 +32,7 @@ Edit `config.json` and fill in:
 
 ### 3. Configure environment
 
-In the the repository root, copy and edit the `.env` file:
+In the repository root, copy and edit the `.env` file:
 
 ```bash
 cp .env.example .env
