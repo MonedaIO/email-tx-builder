@@ -25,7 +25,7 @@ cp config.example.json config.json
 
 Edit `config.json` and fill in:
 - `chains.<network>.privateKey` - Private key for the used chains
-- `prover.*` - Deploy the prover (see the [prover setup guide](../prover/)) and fill all `prover` fields
+- `prover.*` - Set up the prover (see the [prover setup guide](https://github.com/zkemail/email-gpu-prover)) and fill all `prover` fields
 - `icp.*` - Set up the ICP (see the [ICP setup guide](https://proofofemail.notion.site/How-to-setup-ICP-account-for-relayer-cf80ad6187e94219b25152fb875309db)) and fill all `icp` fields
 
 > Note: do not forget to place the `.ic.pem` file in the relayer root
