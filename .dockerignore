@@ -54,10 +54,6 @@ sql_database.db
 .sqlx
 .ic.pem
 
-# Prover
-packages/prover/build/*
-packages/prover/params/*.zkey
-packages/prover/__pycache__/*
 
 # Subgraphs
 packages/subgraph/build

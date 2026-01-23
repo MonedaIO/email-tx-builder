@@ -1,8 +1,0 @@
-flask
-waitress
-gdown
-jsonify
-requests
-modal
-google
-google-cloud-logging
