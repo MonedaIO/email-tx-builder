@@ -25,7 +25,7 @@ cp packages/relayer/config.example.json packages/relayer/config.json
 
 Edit `packages/relayer/config.json` and fill in:
 - `chains.<network>.privateKey` - Private key for the used chains
-- `prover.*` - Set up the prover (see the [prover setup guide](https://github.com/zkemail/email-gpu-prover)) and fill all `prover` fields
+- `prover.url` and `prover.apiKey` - Set up the prover (see the [prover setup guide](https://github.com/zkemail/email-gpu-prover)) and fill the `url` and the `apiKey` fields
 - `icp.wallet_canisterId` - Set up the ICP (see the [ICP setup guide](https://proofofemail.notion.site/How-to-setup-ICP-account-for-relayer-cf80ad6187e94219b25152fb875309db)) and fill the `wallet_canisterId` field
 
 > Note: Place the `.ic.pem` file in `packages/relayer/`
