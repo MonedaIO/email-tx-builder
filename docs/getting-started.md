@@ -289,7 +289,7 @@ That's all for the contracts side.
 
 ## Relayer API
 
-Developers can use the relayer and prover we prepared for you.
+Developers can use the relayer we prepared for you.
 Refer to the following API endpoint to send a request.
 
 [relayer/README.md](../packages/relayer/README.md)

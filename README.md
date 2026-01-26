@@ -100,10 +100,6 @@ We will provide a more generic implementation in the future.
 
 For detailed setup instructions, see [here](./packages/relayer/README.md).
 
-### `prover` Package
-It has some scripts for a prover server that generates a proof of the main circuit in the circuits package.
-The Relayer calls the prover server for each given email to delegate the proof generation.
-You can deploy the prover server either on your local machine or [Modal instances](https://modal.com/).
 
 ### Security Notes
 Our SDK only performs the verification of the email-auth message.

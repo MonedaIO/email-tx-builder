@@ -42,11 +42,6 @@ packages/relayer/config.json
 packages/relayer/src/abis/*
 !packages/relayer/src/abis/mod.rs
 
-# Prover
-packages/prover/build/*
-packages/prover/params/*.zkey
-packages/prover/__pycache__/*
-
 # Subgraphs
 packages/subgraph/build
 
