@@ -17,7 +17,7 @@ function run(command: string, args: string[], cwd: string): Promise<void> {
     child.on("close", (code) => {
       if (code === 0) return resolve();
       reject(
-        new Error(`${command} ${args.join(" ")} exited with code ${code}`)
+        new Error(`${command} ${args.join(" ")} exited with code ${code}`),
       );
     });
     child.on("error", reject);
@@ -37,7 +37,7 @@ async function listTopLevelCircuits(srcDir: string): Promise<string[]> {
 
 async function buildCircuits(
   projectRoot: string,
-  opts: BuildOptions
+  opts: BuildOptions,
 ): Promise<void> {
   const srcDir = path.join(projectRoot, "src");
   const outDir = path.join(projectRoot, opts.outDir);
@@ -48,7 +48,7 @@ async function buildCircuits(
   const selected =
     opts.only && opts.only.length > 0
       ? allCircuits.filter((n) =>
-          opts.only!.includes(n.replace(/\.circom$/, ""))
+          opts.only!.includes(n.replace(/\.circom$/, "")),
         )
       : allCircuits;
 
@@ -99,11 +99,11 @@ async function main() {
     .option(
       "-l, --lib-dir <dir>",
       "circom -l include directory",
-      "../../node_modules"
+      "../../node_modules",
     )
     .option(
       "-c, --circuit <names>",
-      "comma-separated circuit base names (without .circom)"
+      "comma-separated circuit base names (without .circom)",
     )
     .option("--sequential", "build sequentially to reduce peak memory", false)
     .option("--list", "list available circuit base names and exit", false);
