@@ -1,33 +1,55 @@
 # Generic Relayer
 
-## Build
+## Prerequisites
 
-make sure to build the contracts before building the relayer
+- docker compose
+- sqlx-cli
 
-```
-cd ../contracts
-yarn && yarn build
-```
+> **Note:** All commands in this guide should be executed from the repository root unless otherwise specified.
 
-cd back into the relayer and build it
+## Setup
 
-```
-cargo build
-```
+### 1. Build contracts
 
-## Setup the local development environment
-
-cd into the root directory and run
-
-```
-docker compose up --build
+```bash
+yarn workspace @zk-email/email-tx-builder-contracts build
 ```
 
-This will build the docker images for the node, bundler, scanner, smtp, and imap services.
+### 2. Configure relayer
 
-## Applying the migrations
+Copy the config file:
 
+```bash
+cp packages/relayer/config.example.json packages/relayer/config.json
 ```
-cd packages/relayer
-DATABASE_URL=postgres://relayer:relayer_password@localhost:5432/relayer sqlx migrate run
+
+Edit `packages/relayer/config.json` and fill in:
+- `chains.<network>.privateKey` - Private key for the used chains
+- `prover.url` and `prover.apiKey` - Set up the prover (see the [prover setup guide](https://github.com/zkemail/email-gpu-prover)) and fill the `url` and the `apiKey` fields
+- `icp.wallet_canisterId` - Set up the ICP (see the [ICP setup guide](https://proofofemail.notion.site/How-to-setup-ICP-account-for-relayer-cf80ad6187e94219b25152fb875309db)) and fill the `wallet_canisterId` field
+
+> Note: Place the `.ic.pem` file in `packages/relayer/`
+
+### 3. Configure environment
+
+Copy and edit the `.env` file:
+
+```bash
+cp .env.example .env
+```
+
+Fill in the SMTP and IMAP credentials in `.env`.
+
+### 4. Build and start services
+
+```bash
+docker compose up --build -d
+```
+
+This will spin up the docker containers for the imap, smtp and db services.
+
+### 5. Apply the migrations
+
+```bash
+DATABASE_URL=postgres://relayer:relayer_password@localhost:5432/relayer sqlx migrate run --source ./packages/relayer/migrations
 ```
