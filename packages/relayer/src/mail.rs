@@ -361,7 +361,7 @@ pub async fn handle_email(
     relayer_state: RelayerState,
 ) -> Result<EmailEvent> {
     // Parse the email from the raw content
-    let parsed_email = ParsedEmail::new_from_raw_email(&email).await?;
+    let parsed_email = ParsedEmail::new_from_raw_email(&email, false).await?;
 
     info!(LOG, "Parsed email: {:?}", parsed_email);
 

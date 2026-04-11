@@ -38,7 +38,7 @@ pub async fn generate_email_proof(
     update_request(&relayer_state.db, request.id, RequestStatus::Proving).await?;
 
     // Parse the email from the raw content
-    let parsed_email = ParsedEmail::new_from_raw_email(email).await?;
+    let parsed_email = ParsedEmail::new_from_raw_email(email, false).await?;
 
     // Generate the circuit input for the email proof
     let circuit_input = generate_email_circuit_input(

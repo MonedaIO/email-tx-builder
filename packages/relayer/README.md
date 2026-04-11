@@ -51,5 +51,5 @@ This will spin up the docker containers for the imap, smtp and db services.
 ### 5. Apply the migrations
 
 ```bash
-DATABASE_URL=postgres://relayer:relayer_password@localhost:5432/relayer sqlx migrate run --source ./packages/relayer/migrations
+DATABASE_URL=postgres://relayer:relayer_password@localhost:5442/relayer sqlx migrate run --source ./packages/relayer/migrations
 ```

@@ -70,19 +70,46 @@ impl ChainClient {
         // Call the contract method
         let main_authorizer = dkim.main_authorizer().call().await?;
         let call =
-            dkim.set_dkim_public_key_hash(domain_name, public_key_hash, main_authorizer, signature);
+            dkim.set_dkim_public_key_hash(domain_name.clone(), public_key_hash, main_authorizer, signature);
         let tx = call.send().await?;
+        let tx_hash = tx.tx_hash();
 
         // Wait for the transaction to be confirmed
         let receipt = tx
             .confirmations(CONFIRMATIONS)
-            .await?
-            .ok_or(anyhow!("No receipt"))?;
+            .await?;
 
-        // Format the transaction hash
-        let tx_hash = receipt.transaction_hash;
-        let tx_hash = format!("0x{}", hex::encode(tx_hash.as_bytes()));
-        Ok(tx_hash)
+        match receipt {
+            Some(receipt) => {
+                // Verify the transaction was successful
+                if receipt.status != Some(1.into()) {
+                    return Err(anyhow!("Transaction failed: status = {:?}", receipt.status));
+                }
+
+                // Format the transaction hash
+                let tx_hash = format!("0x{}", hex::encode(receipt.transaction_hash.as_bytes()));
+                Ok(tx_hash)
+            }
+            None => {
+                // No receipt received - verify state change manually
+                info!(relayer_utils::LOG, "No receipt received for tx {}, verifying state change", format!("0x{}", hex::encode(tx_hash.as_bytes())));
+
+                // Check if the DKIM public key hash was successfully set
+                let is_valid = self.check_if_dkim_public_key_hash_valid(
+                    domain_name,
+                    public_key_hash,
+                    dkim,
+                )
+                .await?;
+
+                if is_valid {
+                    info!(relayer_utils::LOG, "State change verified: DKIM public key hash is set");
+                    Ok(format!("0x{}", hex::encode(tx_hash.as_bytes())))
+                } else {
+                    Err(anyhow!("No receipt and state verification failed - DKIM public key hash not set"))
+                }
+            }
+        }
     }
 
     /// Checks if a DKIM public key hash is valid.

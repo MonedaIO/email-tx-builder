@@ -151,6 +151,7 @@ pub async fn submit_handler(
     let uuid = create_request(&relayer_state.db, &body)
         .await
         .map_err(|e| {
+            error!(LOG, "Failed to create request in DB: {:?}", e);
             (
                 axum::http::StatusCode::INTERNAL_SERVER_ERROR,
                 axum::Json(json!({"error": e.to_string()})),
@@ -188,7 +189,7 @@ pub async fn submit_handler(
     )
     .await
     .map_err(|e| {
-        // Convert the error to the desired type
+        error!(LOG, "Failed to handle email event: {:?}", e; "email" => &body.email_address, "request_id" => %uuid);
         (
             reqwest::StatusCode::INTERNAL_SERVER_ERROR,
             axum::Json(json!({"error": e.to_string()})),
@@ -269,8 +270,10 @@ pub async fn receive_email_handler(
     info!(LOG, "Received email body: {:?}", body);
 
     // Parse the email from the raw body
-    let parsed_email = ParsedEmail::new_from_raw_email(&body).await.map_err(|e| {
+    let parsed_email = ParsedEmail::new_from_raw_email(&body, false).await.map_err(|e| {
         // Convert the error to the expected type
+        eprintln!("ERROR: Failed to parse email: {}", e);
+        error!(LOG, "Failed to parse email: {}", e);
         (
             reqwest::StatusCode::INTERNAL_SERVER_ERROR,
             axum::Json(json!({"error": e.to_string()})),
@@ -281,6 +284,8 @@ pub async fn receive_email_handler(
     let from_addr = match parsed_email.get_from_addr() {
         Ok(addr) => addr,
         Err(e) => {
+            eprintln!("ERROR: Failed to extract sender address: {}", e);
+            error!(LOG, "Failed to extract sender address: {}", e);
             return Err((
                 reqwest::StatusCode::INTERNAL_SERVER_ERROR,
                 axum::Json(json!({"error": e.to_string()})),
@@ -292,6 +297,8 @@ pub async fn receive_email_handler(
     let original_subject = match parsed_email.get_subject_all() {
         Ok(subject) => subject,
         Err(e) => {
+            eprintln!("ERROR: Failed to extract email subject: {}", e);
+            error!(LOG, "Failed to extract email subject: {}", e);
             return Err((
                 reqwest::StatusCode::INTERNAL_SERVER_ERROR,
                 axum::Json(json!({"error": e.to_string()})),
