@@ -1,0 +1,108 @@
+# Standalone deployment compose for Coolify.
+# All images are built from https://github.com/MonedaIO/email-tx-builder.git
+# All configuration is driven by environment variables — no local files needed.
+
+services:
+  db:
+    build:
+      context: https://github.com/MonedaIO/email-tx-builder.git
+      dockerfile: db/Dockerfile
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - internal
+
+  smtp:
+    build:
+      context: https://github.com/MonedaIO/email-tx-builder.git
+      dockerfile: SMTP.Dockerfile
+    restart: always
+    environment:
+      - SERVER_HOST=${SMTP_INTERNAL_SERVER_HOST}
+      - SERVER_PORT=${SMTP_INTERNAL_SERVER_PORT}
+      - SMTP_DOMAIN_NAME=${SMTP_DOMAIN_NAME}
+      - SMTP_LOGIN_ID=${SMTP_LOGIN_ID}
+      - SMTP_LOGIN_PASSWORD=${SMTP_LOGIN_PASSWORD}
+      - MESSAGE_ID_DOMAIN=${SMTP_MESSAGE_ID_DOMAIN}
+      - JSON_LOGGER=${SMTP_JSON_LOGGER}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${SMTP_INTERNAL_SERVER_PORT}/api/ping"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+    networks:
+      - internal
+
+  imap:
+    build:
+      context: https://github.com/MonedaIO/email-tx-builder.git
+      dockerfile: IMAP.Dockerfile
+    restart: always
+    environment:
+      - RELAYER_ENDPOINT=http://relayer:4500/api/receiveEmail
+      - IMAP_LOGIN_ID=${IMAP_LOGIN_ID}
+      - IMAP_LOGIN_PASSWORD=${IMAP_LOGIN_PASSWORD}
+      - IMAP_DOMAIN_NAME=${IMAP_DOMAIN_NAME}
+      - IMAP_PORT=${IMAP_PORT}
+      - AUTH_TYPE=${IMAP_AUTH_TYPE}
+      - JSON_LOGGER=${IMAP_JSON_LOGGER}
+    depends_on:
+      relayer:
+        condition: service_started
+    networks:
+      - internal
+
+  relayer:
+    build:
+      context: https://github.com/MonedaIO/email-tx-builder.git
+      dockerfile: Relayer.deploy.Dockerfile
+    restart: always
+    environment:
+      - CONFIG_JSON=${CONFIG_JSON}
+      - IC_PEM_CONTENTS=${IC_PEM_CONTENTS}
+    depends_on:
+      db:
+        condition: service_healthy
+      smtp:
+        condition: service_healthy
+    networks:
+      - internal
+
+  nginx:
+    build:
+      context: https://github.com/MonedaIO/email-tx-builder.git
+      dockerfile: nginx/Dockerfile
+    restart: always
+    environment:
+      - HMAC_SECRET=${HMAC_SECRET}
+    ports:
+      - "8000:80"
+    depends_on:
+      relayer:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/api/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - internal
+
+volumes:
+  postgres_data:
+
+networks:
+  internal:
+    driver: bridge

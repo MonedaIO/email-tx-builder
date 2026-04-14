@@ -5098,8 +5098,8 @@ dependencies = [
 
 [[package]]
 name = "zk-regex-apis"
-version = "2.1.1"
-source = "git+https://github.com/zkemail/zk-regex.git#531575345558ba938675d725bd54df45c866ef74"
+version = "2.3.2"
+source = "git+https://github.com/zkemail/zk-regex.git#4fb1bda1af71123f57f4877c29ebcb9004266fd8"
 dependencies = [
  "fancy-regex",
  "itertools 0.13.0",

@@ -3,7 +3,7 @@
  *
  * Clients must send:
  *   X-Timestamp: <unix epoch seconds>
- *   X-Signature: <hex-encoded HMAC-SHA256(secret, timestamp.body)>
+ *   X-Signature: <hex-encoded HMAC-SHA256(secret, timestamp.uri.body)>
  *
  * The signature is verified against the HMAC_SECRET environment variable.
  * Requests with timestamps older than 5 minutes are rejected.
@@ -43,7 +43,7 @@ function verify(r) {
     }
 
     var body = r.requestText || "";
-    var payload = timestamp + "." + body;
+    var payload = timestamp + "." + r.uri + "." + body;
 
     var hmac = require("crypto")
         .createHmac("sha256", secret)
