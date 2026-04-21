@@ -1,264 +1,129 @@
 <!doctype html>
-<html>
-  <style>
-    @font-face {
-      font-family: "Fustat";
-      src: url("https://storage.googleapis.com/email-templates-artifacts/Fustat/Fustat-Regular.ttf") format('truetype');
-      font-weight: 400;
-    }
-    @font-face {
-      font-family: "Fustat";
-      src: url("https://storage.googleapis.com/email-templates-artifacts/Fustat/Fustat-Medium.ttf") format('truetype');
-      font-weight: 500;
-    }
-    @font-face {
-      font-family: "Fustat";
-      src: url("https://storage.googleapis.com/email-templates-artifacts/Fustat/Fustat-SemiBold.ttf") format('truetype');
-      font-weight: 600;
-    }
-    @font-face {
-      font-family: "Fustat";
-      src: url("https://storage.googleapis.com/email-templates-artifacts/Fustat/Fustat-Bold.ttf") format('truetype');
-      font-weight: 700;
-    }
-
-    *,
-    *:before,
-    *:after {
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-      line-height: 1.4;
-      padding: 0;
-      margin: 0;
-      font-family: "Fustat", sans-serif;
-      -ms-text-size-adjust: 100%;
-      -webkit-text-size-adjust: 100%;
-      -webkit-font-smoothing: antialiased;
-    }
-    a {
-      color: #5e6ad2;
-      text-decoration: underline;
-      line-height: 20px;
-    }
-    .primary-button {
-      border: none;
-      background-color: #5e6ad2;
-      color: white;
-      border-radius: 8px;
-      padding: 10px 24px;
-      font-weight: 500;
-    }
-    .secondary-button {
-      border: none;
-      background-color: #26272e;
-      color: white;
-      stroke: #2d2f31;
-      border-radius: 8px;
-      font-weight: 500;
-      padding: 10px 24px;
-    }
-
-    .social-links-logo {
-      border-radius: 50%;
-      background: #ffffff18;
-      border: 1px solid #bfbfbf20;
-      height: 24px;
-      width: 24px;
-      display: inline-block;
-      text-align: center;
-    }
-  </style>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="https://fonts.googleapis.com/css?family=Fustat&display=swap" rel="stylesheet" />
-  </head>
-  <body
-    style="
-      margin: 0;
-      padding: 0;
-      font-size: 16px;
-      font-family: 'Fustat', sans-serif;
-    "
-  >
-    <table
-      align="center"
-      width="100%"
-      style="
-        max-width: 480px;
-        margin: 0 auto;
+    <title>Relayer Error — Admin Notification</title>
+    <style>
+      body {
+        margin: 0;
         padding: 0;
-      "
-    >
-      <tr>
-        <td align="center" style="padding: 0">
-          <!-- Header -->
-          <table
-            width="100%"
-            style="
-              background-image: url(https://storage.googleapis.com/email-templates-artifacts/Header.png?ignoreCache=1);
-              background-size: cover;
-              background-position: center;
-              height: 4.5rem;
-              border-radius: 8px 8px 0 0;
-            "
-          >
-          </table>
-
-          <!-- Content -->
-          <table
-            width="100%"
-            style="
-              background-color: white;
-              padding: 2rem 1rem;
-              border: 1px solid #dddddd;
-            "
-          >
-            <tr>
-              <td style="padding-top: 15px; font-family: 'Fustat', sans-serif;">
-                An error occurred while processing this request.<br />
-                Error: <strong>{{error}}</strong>
-              </td>
-            </tr>
-            <tr>
-              <td style="padding-top: 15px; font-family: 'Fustat', sans-serif;">
-                Request ID: <strong>{{requestId}}</strong>
-              </td>
-            </tr>
-            <tr>
-              <td style="padding-top: 15px; font-family: 'Fustat', sans-serif;">
-                Command: <strong>{{command}}</strong>
-              </td>
-            </tr>
-            <tr>
-              <td style="padding-top: 15px; font-family: 'Fustat', sans-serif;">
-                Account address: <strong>{{account_address}}</strong>
-              </td>
-            </tr>
-            <tr>
-              <td style="padding-top: 15px; font-family: 'Fustat', sans-serif;">
-                Controller address: <strong>{{controller_address}}</strong>
-              </td>
-            </tr>
-            <tr>
-              <td style="padding-top: 15px; font-family: 'Fustat', sans-serif;">
-                Email: <strong>{{email}}</strong>
-              </td>
-            </tr>
-          </table>
-
-          <!-- Footer -->
-          <table
-            width="100%"
-            style="
-              background-image: url(https://storage.googleapis.com/email-templates-artifacts/Footer.png?ignoreCache=1);
-              background-size: cover;
-              height: 4.5rem;
-              border-radius: 0 0 8px 8px;
-            "
-          >
-            <tr>
-              <td align="center" style="padding: 5px">
-                <p style="color: #D4D4D4; font-weight: 500; font-size: 14px; margin: 0; margin-bottom: 4px;">
-                  Powered by
-                  <a
-                    href="#"
-                    style="color: white; font-size: 14px; text-decoration: underline;"
-                    >ZK Email</a
-                  >
-                </p>
-                <table>
-                  <tr>
-                    <td>
-                      <a
-                        href="https://github.com/zkemail"
-                        class="social-links-logo"
-                        style=" border-radius: 50%;
-                            background: #161819;
-                            border: 1px solid #3B3B3B;
-                            backdrop-filter: blur(8px);
-                            margin-left: 4px;
-                            margin-right: 4px;
-                            height: 24px;
-                            width: 24px;
-                            text-align: center;
-                            line-height: 24px;
-                            display: block"
-                        ><img
-                          src="https://storage.googleapis.com/email-templates-artifacts/GithubLogo.png?ignoreCache=1"
-                          alt="GitHub Logo"
-                          style="height: 12px; width: 12px;"
-                      /></a>
-                    </td>
-                    <td>
-                      <a
-                        href="https://twitter.com/zkemail"
-                        class="social-links-logo"
-                        style=" border-radius: 50%;
-                            background: #161819;
-                            border: 1px solid #3B3B3B;
-                            backdrop-filter: blur(8px);
-                            margin-left: 4px;
-                            margin-right: 4px;
-                            height: 24px;
-                            width: 24px;
-                            text-align: center;
-                            line-height: 24px;
-                            display: block"
-                        ><img
-                          src="https://storage.googleapis.com/email-templates-artifacts/XLogo.png?ignoreCache=1"
-                          alt="Twitter Logo"
-                          style="height: 12px; width: 12px;"
-                      /></a>
-                    </td>
-                    <td>
-                      <a href="https://t.me/zkemail/1" class="social-links-logo"
-                      style=" border-radius: 50%;
-                            background: #161819;
-                            border: 1px solid #3B3B3B;
-                            backdrop-filter: blur(8px);
-                            margin-left: 4px;
-                            margin-right: 4px;
-                            height: 24px;
-                            width: 24px;
-                            text-align: center;
-                            line-height: 24px;
-                            display: block"
-                        ><img
-                          src="https://storage.googleapis.com/email-templates-artifacts/TelegramLogo.png?ignoreCache=1"
-                          alt="Telegram Logo"
-                          style="height: 12px; width: 12px;"
-                      /></a>
-                    </td>
-                    <td>
-                      <a
-                        href="https://discord.gg/XgAUbX3F4T"
-                        class="social-links-logo"
-                        style=" border-radius: 50%;
-                            background: #161819;
-                            border: 1px solid #3B3B3B;
-                            backdrop-filter: blur(8px);
-                            margin-left: 4px;
-                            margin-right: 4px;
-                            height: 24px;
-                            width: 24px;
-                            text-align: center;
-                            line-height: 24px;
-                            display: block"
-                        ><img
-                          src="https://storage.googleapis.com/email-templates-artifacts/DiscordLogo.png?ignoreCache=1"
-                          alt="Discord Logo"
-                          style="height: 12px; width: 12px;"
-                      /></a>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    </table>
+        background-color: #ffffff;
+        font-family: "Inter", Arial, sans-serif;
+        color: #101010;
+      }
+      a {
+        color: #03789b;
+        text-decoration: none;
+      }
+      .container {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .header {
+        text-align: center;
+        padding: 32px 0 8px;
+      }
+      .title {
+        font-family: "Ease Display Medium", "Inter", sans-serif;
+        font-weight: 800;
+        font-size: 26px;
+        text-align: center;
+        margin: 16px 0;
+        color: #101010;
+      }
+      .content {
+        font-size: 15px;
+        line-height: 1.6;
+        margin: 8px 0 32px;
+      }
+      .error-box {
+        background-color: #fef2f2;
+        border-left: 4px solid #dc2626;
+        border-radius: 6px;
+        padding: 16px 20px;
+        margin: 16px 0 24px;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #101010;
+        word-break: break-word;
+      }
+      table.details {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #f9fafb;
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 16px 0 24px;
+        font-size: 14px;
+      }
+      table.details td {
+        padding: 10px 16px;
+        vertical-align: top;
+        border-bottom: 1px solid #eef0f2;
+      }
+      table.details td:first-child {
+        color: #75808a;
+        width: 40%;
+        white-space: nowrap;
+      }
+      table.details td:last-child {
+        word-break: break-all;
+        color: #101010;
+      }
+      table.details tr:last-child td {
+        border-bottom: none;
+      }
+      .internal-note {
+        margin-top: 24px;
+        font-size: 12px;
+        color: #75808a;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <img
+          src="https://cdn.prod.website-files.com/68e65d77fd19a20963758dbf/691319a2d9d3b67efff95d14_Moneda%20Logo%20Lockup.png"
+          alt="Moneda"
+          style="width: 120px; max-width: 100%; height: auto; display: inline-block; border-radius: 6px;"
+        />
+      </div>
+      <div class="title">Relayer error — admin notification</div>
+      <div class="content">
+        <p>A Moneda recovery request failed during processing. Details below:</p>
+        <div class="error-box"><strong>{{error}}</strong></div>
+        <table class="details" role="presentation" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>Request ID</td>
+            <td>{{requestId}}</td>
+          </tr>
+          <tr>
+            <td>Command</td>
+            <td>{{command}}</td>
+          </tr>
+          <tr>
+            <td>Account address</td>
+            <td>{{account_address}}</td>
+          </tr>
+          <tr>
+            <td>Controller address</td>
+            <td>{{controller_address}}</td>
+          </tr>
+          <tr>
+            <td>User email</td>
+            <td>{{email}}</td>
+          </tr>
+        </table>
+        <p class="internal-note">
+          This is an internal notification from the Moneda recovery relayer. For support, contact
+          <a href="mailto:support@moneda.com">support@moneda.com</a>.
+        </p>
+      </div>
+    </div>
   </body>
 </html>

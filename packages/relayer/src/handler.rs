@@ -233,7 +233,7 @@ pub async fn receive_email_handler(
     let captures = uuid_regex.captures(&body);
 
     let request_id = captures
-        .and_then(|caps| caps.get(2).map(|m| m.as_str()))
+        .and_then(|caps| caps.get(1).map(|m| m.as_str()))
         .ok_or_else(|| {
             (
                 reqwest::StatusCode::BAD_REQUEST,

@@ -1,239 +1,142 @@
 <!doctype html>
-<html>
-<style>
-  @font-face {
-    font-family: "Fustat";
-    src: url("https://storage.googleapis.com/email-templates-artifacts/Fustat/Fustat-Regular.ttf") format('truetype');
-    font-weight: 400;
-  }
-
-  @font-face {
-    font-family: "Fustat";
-    src: url("https://storage.googleapis.com/email-templates-artifacts/Fustat/Fustat-Medium.ttf") format('truetype');
-    font-weight: 500;
-  }
-
-  @font-face {
-    font-family: "Fustat";
-    src: url("https://storage.googleapis.com/email-templates-artifacts/Fustat/Fustat-SemiBold.ttf") format('truetype');
-    font-weight: 600;
-  }
-
-  @font-face {
-    font-family: "Fustat";
-    src: url("https://storage.googleapis.com/email-templates-artifacts/Fustat/Fustat-Bold.ttf") format('truetype');
-    font-weight: 700;
-  }
-
-  *,
-  *:before,
-  *:after {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    line-height: 1.4;
-    padding: 0;
-    margin: 0;
-    font-family: "Fustat", sans-serif;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  a {
-    color: #5e6ad2;
-    text-decoration: underline;
-    line-height: 20px;
-  }
-
-  .primary-button {
-    border: none;
-    background-color: #5e6ad2;
-    color: white;
-    border-radius: 8px;
-    padding: 10px 24px;
-    font-weight: 500;
-  }
-
-  .secondary-button {
-    border: none;
-    background-color: #26272e;
-    color: white;
-    stroke: #2d2f31;
-    border-radius: 8px;
-    font-weight: 500;
-    padding: 10px 24px;
-  }
-
-  .social-links-logo {
-    border-radius: 50%;
-    background: #ffffff18;
-    border: 1px solid #bfbfbf20;
-    height: 24px;
-    width: 24px;
-    display: inline-block;
-    text-align: center;
-  }
-</style>
-
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link href="https://fonts.googleapis.com/css?family=Fustat&display=swap" rel="stylesheet" />
-</head>
-
-<body style="
-      margin: 0;
-      padding: 0;
-      font-size: 16px;
-      font-family: 'Fustat', sans-serif;
-    ">
-  <table align="center" width="100%" style="
-        max-width: 480px;
-        margin: 0 auto;
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Request complete</title>
+    <style>
+      body {
+        margin: 0;
         padding: 0;
-      " cellspacing="0" cellpadding="0">
-    <tr>
-      <td align="center" style="padding: 0; margin: 0">
-        <!-- Header -->
-        <table width="100%" style="
-              background-image: url(https://storage.googleapis.com/email-templates-artifacts/Header.png);
-              background-size: cover;
-              background-position: center;
-              height: 4.5rem;
-              border-radius: 8px 8px 0 0;
-              padding: 0;
-              margin: 0;
-            " cellspacing="0" cellpadding="0">
-          <tr>
-            <td style="padding: 0; margin: 0">
-              <table width="100%" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td align="left" style="padding: 0; margin: 0">
-                    <img src="https://storage.googleapis.com/email-templates-artifacts/Z.png?ignoreCache=1"
-                      style="display: block; width: 70px; height: 70px; margin: 0" alt="Z logo" />
-                  </td>
-                  <td align="right" style="padding: 0; margin: 0">
-                    <img src="https://storage.googleapis.com/email-templates-artifacts/K.png"
-                      style="display: block; width: 70px; height: 70px; margin: 0" alt="K logo" />
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-
-        <!-- Content -->
-        <table width="100%" style="
-              background-color: white;
-              z-index: 100;
-              padding: 2rem 1rem;
-              border: 1px solid #dddddd;
-            ">
-          <tr>
-            <td style="padding: 0; font-size: 16px; color: #000;">
-              Hi,
-            </td>
-          </tr>
-          <tr>
-            <td style="padding-top: 15px; font-family: 'Fustat', sans-serif;">
-              Your request ID <strong>{{requestId}}</strong> has been processed successfully.
-            </td>
-          </tr>
-          <tr>
-            <td style="padding-top: 20px">
-              <p style="margin: 0">
-                Cheers,<br /><strong>The ZK Email Team</strong>
-              </p>
-            </td>
-          </tr>
-        </table>
-
-        <!-- Footer -->
-        <table width="100%" style="
-              background-image: url(https://storage.googleapis.com/email-templates-artifacts/Footer.png?ignoreCache=1);
-              background-size: cover;
-              height: 4.5rem;
-              border-radius: 0 0 8px 8px;
-              padding: 0;
-              margin: 0;
-            " cellspacing="0" cellpadding="0">
-          <tr>
-            <td align="center" style="padding: 5px">
-              <p style="color: #D4D4D4; font-weight: 500; font-size: 14px; margin: 0; margin-bottom: 4px;">
-                Powered by
-                <a href="#" style="color: white; font-size: 14px; text-decoration: underline;">ZK Email</a>
-              </p>
-              <table>
-                <tr>
-                  <td>
-                    <a href="https://github.com/zkemail" class="social-links-logo" style=" border-radius: 50%;
-                            background: #161819;
-                            border: 1px solid #3B3B3B;
-                            backdrop-filter: blur(8px);
-                            margin-left: 4px;
-                            margin-right: 4px;
-                            height: 24px;
-                            width: 24px;
-                            text-align: center;
-                            line-height: 24px;
-                            display: block"><img
-                        src="https://storage.googleapis.com/email-templates-artifacts/GithubLogo.png?ignoreCache=1"
-                        alt="GitHub Logo" style="height: 12px; width: 12px;" /></a>
-                  </td>
-                  <td>
-                    <a href="https://twitter.com/zkemail" class="social-links-logo" style=" border-radius: 50%;
-                            background: #161819;
-                            border: 1px solid #3B3B3B;
-                            backdrop-filter: blur(8px);
-                            margin-left: 4px;
-                            margin-right: 4px;
-                            height: 24px;
-                            width: 24px;
-                            text-align: center;
-                            line-height: 24px;
-                            display: block"><img
-                        src="https://storage.googleapis.com/email-templates-artifacts/XLogo.png?ignoreCache=1"
-                        alt="Twitter Logo" style="height: 12px; width: 12px;" /></a>
-                  </td>
-                  <td>
-                    <a href="https://t.me/zkemail/1" class="social-links-logo" style=" border-radius: 50%;
-                            background: #161819;
-                            border: 1px solid #3B3B3B;
-                            backdrop-filter: blur(8px);
-                            margin-left: 4px;
-                            margin-right: 4px;
-                            height: 24px;
-                            width: 24px;
-                            text-align: center;
-                            line-height: 24px;
-                            display: block"><img
-                        src="https://storage.googleapis.com/email-templates-artifacts/TelegramLogo.png?ignoreCache=1"
-                        alt="Telegram Logo" style="height: 12px; width: 12px;" /></a>
-                  </td>
-                  <td>
-                    <a href="https://discord.gg/XgAUbX3F4T" class="social-links-logo" style=" border-radius: 50%;
-                            background: #161819;
-                            border: 1px solid #3B3B3B;
-                            backdrop-filter: blur(8px);
-                            margin-left: 4px;
-                            margin-right: 4px;
-                            height: 24px;
-                            width: 24px;
-                            text-align: center;
-                            line-height: 24px;
-                            display: block"><img
-                        src="https://storage.googleapis.com/email-templates-artifacts/DiscordLogo.png?ignoreCache=1"
-                        alt="Discord Logo" style="height: 12px; width: 12px;" /></a>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</body>
-
+        background-color: #ffffff;
+        font-family: "Inter", Arial, sans-serif;
+        color: #101010;
+      }
+      a {
+        color: #03789b;
+        text-decoration: none;
+      }
+      .container {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .header {
+        text-align: center;
+        padding: 32px 0 8px;
+      }
+      .title {
+        font-family: "Ease Display Medium", "Inter", sans-serif;
+        font-weight: 800;
+        font-size: 30px;
+        text-align: center;
+        margin: 16px 0;
+        color: #101010;
+      }
+      .content {
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 8px 0 32px;
+      }
+      .details-box {
+        background-color: #f9fafb;
+        border-radius: 8px;
+        padding: 16px 24px;
+        margin: 24px 0;
+      }
+      .footer {
+        font-size: 13px;
+        color: #75808a;
+        margin-top: 48px;
+        border-top: 1px solid #f3f4f5;
+        padding-top: 24px;
+        text-align: left;
+      }
+      .footer a {
+        color: #75808a;
+        text-decoration: underline;
+      }
+      .disclaimer {
+        font-size: 13px;
+        color: #9aa2a8;
+        margin-top: 24px;
+        line-height: 1.5;
+      }
+      @media (max-width: 600px) {
+        .container {
+          padding: 0 16px;
+        }
+        .title {
+          font-size: 26px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <img
+          src="https://cdn.prod.website-files.com/68e65d77fd19a20963758dbf/691319a2d9d3b67efff95d14_Moneda%20Logo%20Lockup.png"
+          alt="Moneda"
+          style="width: 140px; max-width: 100%; height: auto; display: inline-block; border-radius: 6px;"
+        />
+      </div>
+      <div class="title">Request complete</div>
+      <div class="content">
+        <p>Hi,</p>
+        <p>Your recovery request <strong>{{requestId}}</strong> has been processed successfully and submitted on-chain.</p>
+        <p>No further action is needed from you.</p>
+        <div class="disclaimer">
+          If you didn't initiate or approve this request, contact Moneda support immediately at
+          <a href="mailto:support@moneda.com">support@moneda.com</a>.
+        </div>
+        <p style="margin-top: 24px;">&mdash; The Moneda Team</p>
+      </div>
+      <div class="footer">
+        <div style="text-align: center; margin-top: 24px;">
+          <p style="font-size: 14px; color: #75808a; margin-bottom: 12px;">Follow Moneda</p>
+          <a href="https://x.com/moneda_com" target="_blank" style="display: inline-block; margin: 0 6px;"
+            ><img
+              src="https://img.icons8.com/ios-filled/50/75808A/twitterx.png"
+              width="40"
+              height="40"
+              alt="X"
+              style="filter: invert(50%) grayscale(100%) brightness(90%); opacity: 0.8;"
+          /></a>
+          <a href="https://www.linkedin.com/company/moneda-com" target="_blank" style="display: inline-block; margin: 0 6px;"
+            ><img
+              src="https://img.icons8.com/ios-filled/50/75808A/linkedin.png"
+              width="40"
+              height="40"
+              alt="LinkedIn"
+              style="filter: invert(50%) grayscale(100%) brightness(90%); opacity: 0.8;"
+          /></a>
+          <a href="https://instagram.com/moneda_com" target="_blank" style="display: inline-block; margin: 0 6px;"
+            ><img
+              src="https://img.icons8.com/ios/50/b0b0b0/instagram-new.png"
+              width="40"
+              height="40"
+              alt="Instagram"
+              style="filter: invert(50%) grayscale(100%) brightness(90%); opacity: 0.8;"
+          /></a>
+        </div>
+        <p>
+          &copy; Moneda<br />
+          Moneda is a technology company, not a bank.<br />
+          Registered in Berlin, Germany — HRB 271040 B<br />
+          Operated by Moneda Digital GmbH, Berlin.
+        </p>
+      </div>
+      <div style="text-align: center; margin-top: 32px; padding-top: 16px; border-top: 1px solid #f0f1f2;">
+        <img
+          src="https://cdn.prod.website-files.com/68e65d77fd19a20963758dbf/69131d876a0bbcec6ef4ec97_Moneda%20Logo%20300.jpg"
+          alt="Moneda"
+          width="100"
+          height="auto"
+          style="display: inline-block; opacity: 0.6; margin-top: 8px;"
+        />
+      </div>
+    </div>
+  </body>
 </html>
