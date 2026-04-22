@@ -9,7 +9,7 @@ RUN printf 'precedence ::ffff:0:0/96 100\nprecedence ::1/128 50\nprecedence ::/0
 WORKDIR /app
 
 # Clone the GitHub repository
-RUN git clone https://github.com/zkfriendly/relayer-smtp.git
+RUN git clone https://github.com/MonedaIO/relayer-smtp.git
 
 # Change to the directory of the cloned repository
 WORKDIR /app/relayer-smtp
