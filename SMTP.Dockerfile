@@ -1,6 +1,10 @@
 # Use the official Rust image as a base image
 FROM rust:latest
 
+# Prefer IPv4 over IPv6 in glibc's getaddrinfo so SMTP DNS lookups
+# don't hand back an IPv6 address on IPv4-only container networks.
+RUN echo 'precedence ::ffff:0:0/96  100' >> /etc/gai.conf
+
 # Set the working directory inside the container
 WORKDIR /app
 
