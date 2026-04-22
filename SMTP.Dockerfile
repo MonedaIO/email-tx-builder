@@ -3,7 +3,7 @@ FROM rust:latest
 
 # Prefer IPv4 over IPv6 in glibc's getaddrinfo so SMTP DNS lookups
 # don't hand back an IPv6 address on IPv4-only container networks.
-RUN echo 'precedence ::ffff:0:0/96  100' >> /etc/gai.conf
+RUN printf 'precedence ::ffff:0:0/96 100\nprecedence ::1/128 50\nprecedence ::/0 40\nprecedence 2002::/16 30\nprecedence ::/96 20\n' > /etc/gai.conf
 
 # Set the working directory inside the container
 WORKDIR /app
